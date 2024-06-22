@@ -29,28 +29,27 @@
         private void InitializeComponent()
         {
             pictureBox1 = new PictureBox();
-            button1 = new Button();
+            panel1 = new Panel();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources._1;
-            pictureBox1.Location = new Point(0, 1);
+            pictureBox1.Location = new Point(394, 169);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(513, 896);
+            pictureBox1.Size = new Size(94, 496);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
-            // button1
+            // panel1
             // 
-            button1.Location = new Point(176, 867);
-            button1.Name = "button1";
-            button1.Size = new Size(129, 18);
-            button1.TabIndex = 1;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
+            panel1.BackColor = Color.FromArgb(24, 158, 252);
+            panel1.Location = new Point(183, 869);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(123, 16);
+            panel1.TabIndex = 1;
             // 
             // FormGame
             // 
@@ -58,7 +57,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(19, 57, 87);
             ClientSize = new Size(513, 897);
-            Controls.Add(button1);
+            Controls.Add(panel1);
             Controls.Add(pictureBox1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "FormGame";
@@ -72,6 +71,6 @@
         #endregion
 
         private PictureBox pictureBox1;
-        private Button button1;
+        private Panel panel1;
     }
 }

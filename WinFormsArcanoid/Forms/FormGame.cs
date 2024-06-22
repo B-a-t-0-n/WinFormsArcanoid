@@ -16,7 +16,11 @@ namespace WinFormsArcanoid.Forms
         public FormGame()
         {
             InitializeComponent();
+            pictureBox1.Height = 897;
+            pictureBox1.Width = 513;
+            pictureBox1.Location = new Point(0, 0);
         }
+
 
         [DllImport("user32.dll", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
@@ -29,7 +33,6 @@ namespace WinFormsArcanoid.Forms
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
-
 
         
     }
