@@ -1,4 +1,5 @@
 using System.Runtime.InteropServices;
+using WinFormsArcanoid.Forms;
 
 namespace WinFormsArcanoid
 {
@@ -24,6 +25,41 @@ namespace WinFormsArcanoid
         private void buttonExit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void buttonSettings_Click(object sender, EventArgs e)
+        {
+            var form = new FormSettings
+            {
+                Left = this.Left,
+                Top = this.Top
+            };
+
+            this.Hide();
+            form.ShowDialog();
+
+            this.Top = form.Top;
+            this.Left = form.Left;
+
+            this.Show();
+
+        }
+
+        private void buttonPlay_Click(object sender, EventArgs e)
+        {
+            var form = new FormGame
+            {
+                Left = this.Left,
+                Top = this.Top
+            };
+
+            this.Hide();
+            form.ShowDialog();
+
+            this.Top = form.Top;
+            this.Left = form.Left;
+
+            this.Show();
         }
     }
 }
