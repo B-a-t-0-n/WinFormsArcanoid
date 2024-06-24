@@ -42,6 +42,7 @@
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
+            pictureBox1.MouseDown += FormGame_MouseDown;
             // 
             // panel1
             // 

@@ -16,8 +16,8 @@ namespace WinFormsArcanoid.Forms
         public FormGame()
         {
             InitializeComponent();
-            pictureBox1.Height = 897;
-            pictureBox1.Width = 513;
+            pictureBox1.Height = this.Height;
+            pictureBox1.Width = this.Width;
             pictureBox1.Location = new Point(0, 0);
         }
 

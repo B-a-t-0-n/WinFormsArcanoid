@@ -2,7 +2,7 @@
 {
     public interface IBlock
     {
-        Color Backgroub { get; set; }
+        Color Background { get; set; }
         int Endurance { get; set; }
         Point Location { get; set; }
         Size Size { get; set; }
