@@ -3,12 +3,12 @@ using WinFormsArcanoid.Game.Interfaces;
 
 namespace WinFormsArcanoid.Game.Element
 {
-    public class Circle : PictureBox, IСircle
+    public class Circle : PictureBox, ICircle
     {
         public int Radius { get; set; }
         public Color Background { get; set; }
         public int Damage { get; set; }
-        Point IСircle.Location 
+        Point ICircle.Location 
         {
             get
             {

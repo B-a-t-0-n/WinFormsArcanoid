@@ -1,6 +1,6 @@
 ﻿namespace WinFormsArcanoid.Game.Interfaces
 {
-    public interface IСircle
+    public interface ICircle
     {
         Color Background { get; set; }
         int Damage { get; set; }

@@ -1,4 +1,6 @@
-﻿namespace WinFormsArcanoid.Game.Interfaces
+﻿using System.Diagnostics.Metrics;
+
+namespace WinFormsArcanoid.Game.Interfaces
 {
     public interface IBlock
     {
@@ -8,5 +10,7 @@
         Size Size { get; set; }
 
         void Destruction();
+
+        IBlock Copy();
     }
 }

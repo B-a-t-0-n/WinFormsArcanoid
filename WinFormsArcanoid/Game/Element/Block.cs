@@ -69,5 +69,6 @@ namespace WinFormsArcanoid.Game.Element
             this.Hide();
         }
 
+        public IBlock Copy() => new Block(BackColor, Endurance, Location, Size); 
     }
 }
