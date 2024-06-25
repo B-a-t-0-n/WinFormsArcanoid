@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WinFormsArcanoid.Game.Element;
 
 namespace WinFormsArcanoid.Forms
 {
@@ -19,6 +20,7 @@ namespace WinFormsArcanoid.Forms
             pictureBox1.Height = this.Height;
             pictureBox1.Width = this.Width;
             pictureBox1.Location = new Point(0, 0);
+
         }
 
 

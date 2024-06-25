@@ -142,6 +142,7 @@
             Name = "FormHome";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Главная";
+            Load += FormHome_Load;
             MouseDown += FormHome_MouseDown;
             MainMenu.ResumeLayout(false);
             panelButtons.ResumeLayout(false);

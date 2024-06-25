@@ -1,3 +1,4 @@
+using System.Drawing.Configuration;
 using System.Runtime.InteropServices;
 using WinFormsArcanoid.Forms;
 
@@ -60,6 +61,11 @@ namespace WinFormsArcanoid
             this.Left = form.Left;
 
             this.Show();
+        }
+
+        private void FormHome_Load(object sender, EventArgs e)
+        {
+            
         }
     }
 }
