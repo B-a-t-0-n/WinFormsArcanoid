@@ -17,5 +17,6 @@ namespace WinFormsArcanoid.Game.Element
             Size = size;
             Speed = speed;
         }
+
     }
 }

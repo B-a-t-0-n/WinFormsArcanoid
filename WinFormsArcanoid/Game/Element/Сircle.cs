@@ -26,6 +26,8 @@ namespace WinFormsArcanoid.Game.Element
             Background = background;
             Damage = damage;
             Location = location;
+
+            this.Size = new Size(Radius / 2, radius / 2);
         }
 
         protected override void OnResize(EventArgs e)
