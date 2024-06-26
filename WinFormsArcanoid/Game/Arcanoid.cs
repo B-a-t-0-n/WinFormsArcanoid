@@ -1,7 +1,7 @@
-﻿using System.Windows.Forms;
+﻿using System.Collections.Generic;
 using WinFormsArcanoid.Game.Element;
-using WinFormsArcanoid.Game.Interfaces;
 using WinFormsArcanoid.Game.Maps;
+using Timer = System.Windows.Forms.Timer;
 
 namespace WinFormsArcanoid.Game
 {
@@ -13,15 +13,16 @@ namespace WinFormsArcanoid.Game
 
         private Control _container;
         private PictureBox? _pictureBox;
+        private Timer _timerMovement;
 
         public Arcanoid(Control container, string randomMap)
         {
             _container = container;
             this.Map = new Map(randomMap);
-            Platform = new(Color.FromArgb(24, 158, 252), new Point(183, 869), new Size(123, 16), 10);
+            Platform = new(Color.FromArgb(24, 158, 252), new Point(183, 869), new Size(123, 16), 6);
 
             Circle = new Circle(50, Color.FromArgb(145, 195, 231), 1, new Point(234, 844));
-            Circle.Image = Properties.Resources.GmOC;
+            Circle.Image = Properties.Resources.raccoon_dance;
             Circle.SizeMode = PictureBoxSizeMode.Zoom;
 
             foreach (var item in _container.Controls)
@@ -31,11 +32,17 @@ namespace WinFormsArcanoid.Game
                     _pictureBox = (PictureBox)item;
                 }
             }
+
+            _timerMovement = new Timer();
+            _timerMovement.Enabled = false;
+            _timerMovement.Interval = 10;
+            _timerMovement.Tick += timerMovement_Tick!;
         }
-        
+
         public void Start()
         {
             LoadGame();
+            _timerMovement.Enabled = true;
         }
 
         private void LoadGame()
@@ -58,5 +65,12 @@ namespace WinFormsArcanoid.Game
                 _container.Controls.Add(_pictureBox);
         }
 
+        private void timerMovement_Tick(object sender, EventArgs e)
+        {
+            if (Platform.isLeft)
+                Platform.Movement(0 - Platform.Speed, 0);
+            if (Platform.isRight)
+                Platform.Movement(Platform.Speed, 0);
+        }
     }
 }

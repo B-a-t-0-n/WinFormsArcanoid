@@ -16,14 +16,16 @@ namespace WinFormsArcanoid.Forms
 {
     public partial class FormGame : Form
     {
+        Arcanoid arcanoidGame;
+
         public FormGame()
         {
             InitializeComponent();
-            pictureBox1.Height = this.Height;
-            pictureBox1.Width = this.Width;
-            pictureBox1.Location = new Point(0, 0);
-            Arcanoid arcanoid = new Arcanoid(this, MapDefaults.FILL);
-            arcanoid.Start();
+            pictureBoxWallpaper.Height = this.Height;
+            pictureBoxWallpaper.Width = this.Width;
+            pictureBoxWallpaper.Location = new Point(0, 0);
+            arcanoidGame = new Arcanoid(this, MapDefaults.FILL);
+            arcanoidGame.Start();
 
         }
 
@@ -37,6 +39,32 @@ namespace WinFormsArcanoid.Forms
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        private void FormGame_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.D:
+                    arcanoidGame.Platform.isRight = true;
+                    break;
+                case Keys.A:
+                    arcanoidGame.Platform.isLeft = true;
+                    break;
+            }
+        }
+
+        private void FormGame_KeyUp(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.D:
+                    arcanoidGame.Platform.isRight = false;
+                    break;
+                case Keys.A:
+                    arcanoidGame.Platform.isLeft = false;
+                    break;
+            }
         }
     }
 }

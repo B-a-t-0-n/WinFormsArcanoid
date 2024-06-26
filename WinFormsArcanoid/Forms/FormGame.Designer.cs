@@ -28,20 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            pictureBox1 = new PictureBox();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            pictureBoxWallpaper = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxWallpaper).BeginInit();
             SuspendLayout();
             // 
-            // pictureBox1
+            // pictureBoxWallpaper
             // 
-            pictureBox1.Image = Properties.Resources._1;
-            pictureBox1.Location = new Point(394, 169);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(94, 496);
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
-            pictureBox1.MouseDown += FormGame_MouseDown;
+            pictureBoxWallpaper.Image = Properties.Resources._1;
+            pictureBoxWallpaper.Location = new Point(394, 169);
+            pictureBoxWallpaper.Name = "pictureBoxWallpaper";
+            pictureBoxWallpaper.Size = new Size(94, 496);
+            pictureBoxWallpaper.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBoxWallpaper.TabIndex = 0;
+            pictureBoxWallpaper.TabStop = false;
+            pictureBoxWallpaper.MouseDown += FormGame_MouseDown;
             // 
             // FormGame
             // 
@@ -49,18 +49,20 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(19, 57, 87);
             ClientSize = new Size(513, 897);
-            Controls.Add(pictureBox1);
+            Controls.Add(pictureBoxWallpaper);
             FormBorderStyle = FormBorderStyle.None;
             Name = "FormGame";
             StartPosition = FormStartPosition.Manual;
             Text = "FormGame";
+            KeyDown += FormGame_KeyDown;
+            KeyUp += FormGame_KeyUp;
             MouseDown += FormGame_MouseDown;
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxWallpaper).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private PictureBox pictureBox1;
+        private PictureBox pictureBoxWallpaper;
     }
 }

@@ -48,5 +48,10 @@ namespace WinFormsArcanoid.Game.Element
                 this.Region = new Region(gp);
             }
         }
+
+        public void Movement()
+        {
+
+        }
     }
 }
