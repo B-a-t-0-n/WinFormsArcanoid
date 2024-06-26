@@ -8,7 +8,9 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WinFormsArcanoid.Game;
 using WinFormsArcanoid.Game.Element;
+using WinFormsArcanoid.Game.Maps;
 
 namespace WinFormsArcanoid.Forms
 {
@@ -20,9 +22,10 @@ namespace WinFormsArcanoid.Forms
             pictureBox1.Height = this.Height;
             pictureBox1.Width = this.Width;
             pictureBox1.Location = new Point(0, 0);
+            Arcanoid arcanoid = new Arcanoid(this, MapDefaults.FILL);
+            arcanoid.Start();
 
         }
-
 
         [DllImport("user32.dll", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
@@ -34,6 +37,6 @@ namespace WinFormsArcanoid.Forms
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
-        } 
+        }
     }
 }

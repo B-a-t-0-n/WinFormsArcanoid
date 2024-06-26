@@ -6,7 +6,16 @@ namespace WinFormsArcanoid.Game.Element
     public class Circle : PictureBox, ICircle
     {
         public int Radius { get; set; }
-        public Color Background { get; set; }
+        public Color Background {
+            get
+            {
+                return this.BackColor;
+            }
+            set
+            {
+                this.BackColor = value;
+            }
+        }
         public int Damage { get; set; }
         Point ICircle.Location 
         {

@@ -16,21 +16,20 @@ namespace WinFormsArcanoid.Game.Maps
 
         public Map(string typeMap = MapDefaults.RANDOM)
         {
+            bool hasFillMap = true;
+
             switch (typeMap)
             {
                 case MapDefaults.RANDOM:
-                    Blocks = GenerateRandomMap(10, 5, [new Block(Colors[0], 10, new Point(0,0), new Size(10,10))]);
+                    hasFillMap = false;
                     break;
 
                 case MapDefaults.FILL:
-                    Blocks = GenerateFillMap(10, 5, [new Block(Colors[0], 10, new Point(0, 0), new Size(10, 10))]);
-                    break;
-
-                default:
-                    Blocks = new IBlock[0,0];
+                    hasFillMap = true;
                     break;
             }
-            
+
+            Blocks = GenerateMap(5, 5, [new Block(Colors[0], 1, new Point(0, 0), new Size(95, 33))], hasFillMap);
         }
 
         public Map(IBlock?[,] Blocks)
@@ -38,24 +37,24 @@ namespace WinFormsArcanoid.Game.Maps
             this.Blocks = Blocks;
         }
 
-        public static IBlock?[,] GenerateRandomMap(int x, int y, IBlock[] blocks, bool hasRandomColors = false)
+        public static IBlock?[,] GenerateMap(int x, int y, IBlock[] blocks, bool hasFillMap = true, bool hasRandomColors = false)
         {
             var map = new IBlock?[y, x]; 
             Random rnd = new Random();
 
-            for (int i = 0; i < blocks.GetLength(0); i++)
+            for (int i = 0; i < map.GetLength(0); i++)
             {
-                for (int j = 0; j < blocks.GetLength(1); j++)
+                for (int j = 0; j < map.GetLength(1); j++)
                 {
-                    if(rnd.Next(0,3) == 2)
+                    if(rnd.Next(0,3) == 2 && !hasFillMap)
                     {
                         map[i, j] = null;
                         continue;
                     }
 
                     var index = rnd.Next(0, blocks.Length);
-                    map[i,j] = blocks[index].Copy();
-                    map[i,j]!.Location = new Point(map[i,j]!.Size.Width * j, map[i, j]!.Size.Height * i);
+                    map[i ,j] = blocks[index].Copy();
+                    map[i, j]!.Location = new Point((map[i,j]!.Size.Width + 5) * j + 10, (map[i, j]!.Size.Height + 5) * i + 15);
 
                     if (hasRandomColors)
                     {
@@ -67,29 +66,5 @@ namespace WinFormsArcanoid.Game.Maps
             return map;
         }
 
-        public static IBlock?[,] GenerateFillMap(int x, int y, IBlock[] blocks, bool hasRandomColors = false)
-        {
-            var map = new IBlock?[y, x];
-            Random rnd = new Random();
-
-            for (int i = 0; i < blocks.GetLength(0); i++)
-            {
-                for (int j = 0; j < blocks.GetLength(1); j++)
-                {
-                    var index = rnd.Next(0, blocks.Length);
-                    map[i, j] = blocks[index].Copy();
-                    map[i, j]!.Location = new Point(map[i, j]!.Size.Width * j, map[i, j]!.Size.Height * i);
-
-                    if (hasRandomColors)
-                    {
-                        map[i, j]!.Background = Map.Colors[rnd.Next(0, Map.Colors.Length)];
-                    }
-                }
-            }
-
-            return map;
-        }
     }
-
-
 }
