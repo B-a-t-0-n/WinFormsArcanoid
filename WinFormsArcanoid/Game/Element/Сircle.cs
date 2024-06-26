@@ -5,6 +5,12 @@ namespace WinFormsArcanoid.Game.Element
 {
     public class Circle : PictureBox, ICircle
     {
+        public bool IsLeft { get; set; } = false;
+        public bool IsRight { get; set; } = false;
+        public bool IsUp { get; set; } = false;
+        public bool IsDown { get; set; } = false;
+
+        public int Speed { get; set; }
         public int Radius { get; set; }
         public Color Background {
             get
@@ -29,12 +35,13 @@ namespace WinFormsArcanoid.Game.Element
             }
         }
 
-        public Circle(int radius, Color background, int damage, Point location)
+        public Circle(int radius, Color background, int damage, Point location, int speed)
         {
             Radius = radius;
             Background = background;
             Damage = damage;
             Location = location;
+            Speed = speed;
 
             this.Size = new Size(Radius / 2, radius / 2);
         }
@@ -51,7 +58,32 @@ namespace WinFormsArcanoid.Game.Element
 
         public void Movement()
         {
+            var container = this.Parent;
 
+            if (IsLeft && CheckMovement(0 - Speed, 0))
+            {
+                Location = new Point(Location.X - Speed, 0);
+            }
+
+            if (IsRight && CheckMovement(Speed, 0))
+            {
+                Location = new Point(Location.X + Speed, 0);
+            }
+
+            if (IsUp && CheckMovement(0, 0 - Speed))
+            {
+                Location = new Point(0, Location.Y - Speed);
+            }
+
+            if (IsDown && CheckMovement(0, Speed))
+            {
+                Location = new Point(0, Location.Y + Speed);
+            }
+        }
+
+        private bool CheckMovement(int x , int y)
+        {
+            return true;
         }
     }
 }

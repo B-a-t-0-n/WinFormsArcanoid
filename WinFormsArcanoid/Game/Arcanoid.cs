@@ -21,7 +21,7 @@ namespace WinFormsArcanoid.Game
             this.Map = new Map(randomMap);
             Platform = new(Color.FromArgb(24, 158, 252), new Point(183, 869), new Size(123, 16), 6);
 
-            Circle = new Circle(50, Color.FromArgb(145, 195, 231), 1, new Point(234, 844));
+            Circle = new Circle(50, Color.FromArgb(145, 195, 231), 1, new Point(234, 844), 3);
             Circle.Image = Properties.Resources.raccoon_dance;
             Circle.SizeMode = PictureBoxSizeMode.Zoom;
 
@@ -71,6 +71,8 @@ namespace WinFormsArcanoid.Game
                 Platform.Movement(0 - Platform.Speed, 0);
             if (Platform.isRight)
                 Platform.Movement(Platform.Speed, 0);
+
+            Circle.Movement();
         }
     }
 }

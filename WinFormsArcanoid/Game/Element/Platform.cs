@@ -9,6 +9,7 @@ namespace WinFormsArcanoid.Game.Element
     public class Platform: Panel
     {
         public int Speed { get; set; }
+
         public bool isLeft { get; set; } = false;
         public bool isRight { get; set; } = false;
 
