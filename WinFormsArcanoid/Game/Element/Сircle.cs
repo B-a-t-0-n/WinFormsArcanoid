@@ -1,5 +1,6 @@
 ﻿using System.Drawing.Drawing2D;
 using WinFormsArcanoid.Game.Interfaces;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace WinFormsArcanoid.Game.Element
 {
@@ -35,6 +36,8 @@ namespace WinFormsArcanoid.Game.Element
             }
         }
 
+        private Platform? _platform;
+
         public Circle(int radius, Color background, int damage, Point location, int speed)
         {
             Radius = radius;
@@ -43,7 +46,7 @@ namespace WinFormsArcanoid.Game.Element
             Location = location;
             Speed = speed;
 
-            this.Size = new Size(Radius / 2, radius / 2);
+            this.Size = new Size(Radius / 2, Radius / 2);
         }
 
         protected override void OnResize(EventArgs e)
@@ -56,33 +59,82 @@ namespace WinFormsArcanoid.Game.Element
             }
         }
 
+        public void AddElementGame(Platform platform)
+        {
+            _platform = platform;
+        }
+
         public void Movement()
         {
-            var container = this.Parent;
-
-            if (IsLeft && CheckMovement(0 - Speed, 0))
+            if (IsLeft)
             {
-                Location = new Point(Location.X - Speed, 0);
+                if(CheckMovement(0 - Speed, 0))
+                    Location = new Point(Location.X - Speed, Location.Y);
+                else
+                {
+                    IsLeft = false;
+                    IsRight = true;
+                }
             }
 
-            if (IsRight && CheckMovement(Speed, 0))
+            if (IsRight)
             {
-                Location = new Point(Location.X + Speed, 0);
+                if (CheckMovement(Speed, 0))
+                    Location = new Point(Location.X + Speed, Location.Y);
+                else
+                {
+                    IsLeft = true;
+                    IsRight = false;
+
+                }
             }
 
-            if (IsUp && CheckMovement(0, 0 - Speed))
+            if (IsUp)
             {
-                Location = new Point(0, Location.Y - Speed);
+                if (CheckMovement(0, 0 - Speed))
+                    Location = new Point(Location.X, Location.Y - Speed);
+                else
+                {
+                    IsUp = false;
+                    IsDown = true;
+                }
             }
 
-            if (IsDown && CheckMovement(0, Speed))
+            if (IsDown)
             {
-                Location = new Point(0, Location.Y + Speed);
+                if (CheckMovement(0, Speed) && CheckPlatform())
+                    Location = new Point(Location.X, Location.Y + Speed);
+                else
+                {
+                    IsUp = true;
+                    IsDown = false;
+                }
             }
+
+
         }
 
         private bool CheckMovement(int x , int y)
         {
+            var container = this.Parent;
+            
+            if (Location.Y + y > container!.Height - Height ||
+               Location.Y + y < 0 ||
+               Location.X + x > container!.Width - Width ||
+               Location.X + x < 0)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool CheckPlatform()
+        {
+            if (_platform != null && Bounds.IntersectsWith(_platform.Bounds))
+            {
+                return false;
+            }
             return true;
         }
     }

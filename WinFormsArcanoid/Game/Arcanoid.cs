@@ -21,10 +21,6 @@ namespace WinFormsArcanoid.Game
             this.Map = new Map(randomMap);
             Platform = new(Color.FromArgb(24, 158, 252), new Point(183, 869), new Size(123, 16), 6);
 
-            Circle = new Circle(50, Color.FromArgb(145, 195, 231), 1, new Point(234, 844), 3);
-            Circle.Image = Properties.Resources.raccoon_dance;
-            Circle.SizeMode = PictureBoxSizeMode.Zoom;
-
             foreach (var item in _container.Controls)
             {
                 if (item is PictureBox)
@@ -32,6 +28,11 @@ namespace WinFormsArcanoid.Game
                     _pictureBox = (PictureBox)item;
                 }
             }
+
+            Circle = new Circle(50, Color.FromArgb(145, 195, 231), 1, new Point(234, 844), 3);
+            Circle.Image = Properties.Resources.GmOC;
+            Circle.SizeMode = PictureBoxSizeMode.Zoom;
+            Circle.AddElementGame(Platform);
 
             _timerMovement = new Timer();
             _timerMovement.Enabled = false;
@@ -67,10 +68,22 @@ namespace WinFormsArcanoid.Game
 
         private void timerMovement_Tick(object sender, EventArgs e)
         {
-            if (Platform.isLeft)
+            if (Platform.IsLeft)
                 Platform.Movement(0 - Platform.Speed, 0);
-            if (Platform.isRight)
+            if (Platform.IsRight)
                 Platform.Movement(Platform.Speed, 0);
+
+            if(!Circle.IsUp && !Circle.IsDown && !Circle.IsLeft && !Circle.IsRight && Platform.IsLeft)
+            {
+                Circle.IsLeft = true;
+                Circle.IsUp = true;
+            }
+
+            if (!Circle.IsUp && !Circle.IsDown && !Circle.IsLeft && !Circle.IsRight && Platform.IsRight)
+            {
+                Circle.IsRight = true;
+                Circle.IsUp = true;
+            }
 
             Circle.Movement();
         }

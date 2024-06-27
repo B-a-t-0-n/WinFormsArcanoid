@@ -10,8 +10,8 @@ namespace WinFormsArcanoid.Game.Element
     {
         public int Speed { get; set; }
 
-        public bool isLeft { get; set; } = false;
-        public bool isRight { get; set; } = false;
+        public bool IsLeft { get; set; } = false;
+        public bool IsRight { get; set; } = false;
 
         public Platform(Color backgroub, Point location, Size size, int speed)
         {

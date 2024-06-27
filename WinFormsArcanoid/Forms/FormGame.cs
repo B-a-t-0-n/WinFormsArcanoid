@@ -46,10 +46,10 @@ namespace WinFormsArcanoid.Forms
             switch (e.KeyCode)
             {
                 case Keys.D:
-                    arcanoidGame.Platform.isRight = true;
+                    arcanoidGame.Platform.IsRight = true;
                     break;
                 case Keys.A:
-                    arcanoidGame.Platform.isLeft = true;
+                    arcanoidGame.Platform.IsLeft = true;
                     break;
             }
         }
@@ -59,12 +59,14 @@ namespace WinFormsArcanoid.Forms
             switch (e.KeyCode)
             {
                 case Keys.D:
-                    arcanoidGame.Platform.isRight = false;
+                    arcanoidGame.Platform.IsRight = false;
                     break;
                 case Keys.A:
-                    arcanoidGame.Platform.isLeft = false;
+                    arcanoidGame.Platform.IsLeft = false;
                     break;
             }
         }
+
+       
     }
 }
