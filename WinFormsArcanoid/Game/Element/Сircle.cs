@@ -37,6 +37,7 @@ namespace WinFormsArcanoid.Game.Element
         }
 
         private Platform? _platform;
+        private IBlock[,]? _blocks;
 
         public Circle(int radius, Color background, int damage, Point location, int speed)
         {
@@ -59,9 +60,10 @@ namespace WinFormsArcanoid.Game.Element
             }
         }
 
-        public void AddElementGame(Platform platform)
+        public void AddElementGame(Platform platform, IBlock[,] blocks)
         {
             _platform = platform;
+            _blocks = blocks;
         }
 
         public void Movement()

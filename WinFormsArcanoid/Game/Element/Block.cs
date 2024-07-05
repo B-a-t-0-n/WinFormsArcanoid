@@ -1,6 +1,4 @@
-﻿
-using System.ComponentModel;
-using WinFormsArcanoid.Game.Interfaces;
+﻿using WinFormsArcanoid.Game.Interfaces;
 
 namespace WinFormsArcanoid.Game.Element
 {

@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿    using System.Collections.Generic;
 using WinFormsArcanoid.Game.Element;
 using WinFormsArcanoid.Game.Maps;
+using WinFormsArcanoid.Game.Movements;
 using Timer = System.Windows.Forms.Timer;
 
 namespace WinFormsArcanoid.Game
@@ -29,10 +30,13 @@ namespace WinFormsArcanoid.Game
                 }
             }
 
-            Circle = new Circle(50, Color.FromArgb(145, 195, 231), 1, new Point(234, 844), 3);
-            Circle.Image = Properties.Resources.GmOC;
-            Circle.SizeMode = PictureBoxSizeMode.Zoom;
-            Circle.AddElementGame(Platform);
+            Circle = new Circle(50, Color.FromArgb(145, 195, 231), 1, new Point(234, 844), 3)
+            {
+                Image = Properties.Resources.GmOC,
+                SizeMode = PictureBoxSizeMode.Zoom
+            };
+
+            Circle.AddElementGame(Platform, Map.Blocks!);
 
             _timerMovement = new Timer();
             _timerMovement.Enabled = false;
@@ -68,18 +72,15 @@ namespace WinFormsArcanoid.Game
 
         private void timerMovement_Tick(object sender, EventArgs e)
         {
-            if (Platform.IsLeft)
-                Platform.Movement(0 - Platform.Speed, 0);
-            if (Platform.IsRight)
-                Platform.Movement(Platform.Speed, 0);
+            MovementPlatform.Movement(Platform);
 
-            if(!Circle.IsUp && !Circle.IsDown && !Circle.IsLeft && !Circle.IsRight && Platform.IsLeft)
+            if (!Circle.IsUp && !Circle.IsDown && !Circle.IsLeft && !Circle.IsRight && MovementPlatform.IsLeft)
             {
                 Circle.IsLeft = true;
                 Circle.IsUp = true;
             }
 
-            if (!Circle.IsUp && !Circle.IsDown && !Circle.IsLeft && !Circle.IsRight && Platform.IsRight)
+            if (!Circle.IsUp && !Circle.IsDown && !Circle.IsLeft && !Circle.IsRight && MovementPlatform.IsRight)
             {
                 Circle.IsRight = true;
                 Circle.IsUp = true;

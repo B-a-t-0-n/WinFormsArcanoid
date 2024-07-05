@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,6 +12,7 @@ using System.Windows.Forms;
 using WinFormsArcanoid.Game;
 using WinFormsArcanoid.Game.Element;
 using WinFormsArcanoid.Game.Maps;
+using WinFormsArcanoid.Game.Movements;
 
 namespace WinFormsArcanoid.Forms
 {
@@ -46,10 +48,10 @@ namespace WinFormsArcanoid.Forms
             switch (e.KeyCode)
             {
                 case Keys.D:
-                    arcanoidGame.Platform.IsRight = true;
+                    MovementPlatform.IsRight = true;
                     break;
                 case Keys.A:
-                    arcanoidGame.Platform.IsLeft = true;
+                    MovementPlatform.IsLeft = true;
                     break;
             }
         }
@@ -59,10 +61,10 @@ namespace WinFormsArcanoid.Forms
             switch (e.KeyCode)
             {
                 case Keys.D:
-                    arcanoidGame.Platform.IsRight = false;
+                    MovementPlatform.IsRight = false;
                     break;
                 case Keys.A:
-                    arcanoidGame.Platform.IsLeft = false;
+                    MovementPlatform.IsLeft = false;
                     break;
             }
         }
