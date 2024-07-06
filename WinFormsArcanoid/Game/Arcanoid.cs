@@ -30,7 +30,7 @@ namespace WinFormsArcanoid.Game
                 }
             }
 
-            Circle = new Circle(50, Color.FromArgb(145, 195, 231), 1, new Point(234, 844), 3)
+            Circle = new Circle(50, Color.FromArgb(145, 195, 231), 1, new Point(234, 844), 6)
             {
                 Image = Properties.Resources.GmOC,
                 SizeMode = PictureBoxSizeMode.Zoom
@@ -38,7 +38,7 @@ namespace WinFormsArcanoid.Game
 
             _timerMovement = new Timer();
             _timerMovement.Enabled = false;
-            _timerMovement.Interval = 10;
+            _timerMovement.Interval = 1;
             _timerMovement.Tick += timerMovement_Tick!;
         }
 

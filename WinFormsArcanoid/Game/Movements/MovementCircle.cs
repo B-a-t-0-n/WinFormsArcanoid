@@ -16,9 +16,9 @@ namespace WinFormsArcanoid.Game.Movements
         {
             if (IsLeft)
             {
-                if (CheckMovementInContainer(circle, 0 - circle.Speed, 0))
+                if (CheckMovementInContainer(circle, 0 - circle.Speed, 0) && CheckBlock(map, circle))
                     circle.Location = new Point(circle.Location.X - circle.Speed, circle.Location.Y);
-                else if (CheckBlock(map, circle))
+                else
                 {
                     foreach (var item in map.Blocks)
                     {
@@ -32,11 +32,6 @@ namespace WinFormsArcanoid.Game.Movements
                             }
                         }
                     }
-                    IsLeft = false;
-                    IsRight = true;
-                }
-                else
-                {
                     IsLeft = false;
                     IsRight = true;
                 }
@@ -44,9 +39,9 @@ namespace WinFormsArcanoid.Game.Movements
 
             if (IsRight)
             {
-                if (CheckMovementInContainer(circle, circle.Speed, 0))
+                if (CheckMovementInContainer(circle, circle.Speed, 0) && CheckBlock(map, circle))
                     circle.Location = new Point(circle.Location.X + circle.Speed, circle.Location.Y);
-                else if (CheckBlock(map, circle))
+                else
                 {
                     foreach (var item in map.Blocks)
                     {
@@ -60,11 +55,6 @@ namespace WinFormsArcanoid.Game.Movements
                             }
                         }
                     }
-                    IsLeft = true;
-                    IsRight = false;
-                }
-                else
-                {
                     IsLeft = true;
                     IsRight = false;
 
@@ -73,9 +63,9 @@ namespace WinFormsArcanoid.Game.Movements
 
             if (IsUp)
             {
-                if (CheckMovementInContainer(circle, 0, 0 - circle.Speed))
+                if (CheckMovementInContainer(circle, 0, 0 - circle.Speed) && CheckBlock(map, circle))
                     circle.Location = new Point(circle.Location.X, circle.Location.Y - circle.Speed);
-                else if (CheckBlock(map, circle))
+                else
                 {
                     foreach (var item in map.Blocks)
                     {
@@ -89,11 +79,6 @@ namespace WinFormsArcanoid.Game.Movements
                             }
                         }
                     }
-                    IsUp = false;
-                    IsDown = true;
-                }
-                else
-                {
                     IsUp = false;
                     IsDown = true;
                 }
@@ -101,9 +86,9 @@ namespace WinFormsArcanoid.Game.Movements
 
             if (IsDown)
             {
-                if (CheckMovementInContainer(circle, 0, circle.Speed) && CheckPlatform(platform, circle))
+                if (CheckMovementInContainer(circle, 0, circle.Speed) && CheckBlock(map, circle) && CheckPlatform(platform, circle))
                     circle.Location = new Point(circle.Location.X, circle.Location.Y + circle.Speed);
-                else if (CheckBlock(map, circle))
+                else
                 {
                     foreach (var item in map.Blocks)
                     {
@@ -113,16 +98,10 @@ namespace WinFormsArcanoid.Game.Movements
 
                             if (circle.Bounds.IntersectsWith(block.Bounds))
                             {
-                                block.Endurance -= circle.Damage;
+                                block.Endurance -= circle.Damage ;
                             }
                         }
                     }
-                    IsUp = true;
-                    IsDown = false;
-                }
-                else
-                {
-
                     IsUp = true;
                     IsDown = false;
                 }
