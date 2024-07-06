@@ -29,7 +29,7 @@ namespace WinFormsArcanoid.Game.Maps
                     break;
             }
 
-            Blocks = GenerateMap(5, 5, [new Block(Colors[0], 1, new Point(0, 0), new Size(95, 33))], hasFillMap);
+            Blocks = GenerateMap(5, 5, [new Block(Colors[0], 10, new Point(0, 0), new Size(95, 33))], hasFillMap);
         }
 
         public Map(IBlock?[,] Blocks)

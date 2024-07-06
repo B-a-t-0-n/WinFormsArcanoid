@@ -6,11 +6,6 @@ namespace WinFormsArcanoid.Game.Element
 {
     public class Circle : PictureBox, ICircle
     {
-        public bool IsLeft { get; set; } = false;
-        public bool IsRight { get; set; } = false;
-        public bool IsUp { get; set; } = false;
-        public bool IsDown { get; set; } = false;
-
         public int Speed { get; set; }
         public int Radius { get; set; }
         public Color Background {
@@ -36,9 +31,6 @@ namespace WinFormsArcanoid.Game.Element
             }
         }
 
-        private Platform? _platform;
-        private IBlock[,]? _blocks;
-
         public Circle(int radius, Color background, int damage, Point location, int speed)
         {
             Radius = radius;
@@ -58,86 +50,6 @@ namespace WinFormsArcanoid.Game.Element
                 gp.AddEllipse(new Rectangle(0, 0, this.Width - 1, this.Height - 1));
                 this.Region = new Region(gp);
             }
-        }
-
-        public void AddElementGame(Platform platform, IBlock[,] blocks)
-        {
-            _platform = platform;
-            _blocks = blocks;
-        }
-
-        public void Movement()
-        {
-            if (IsLeft)
-            {
-                if(CheckMovement(0 - Speed, 0))
-                    Location = new Point(Location.X - Speed, Location.Y);
-                else
-                {
-                    IsLeft = false;
-                    IsRight = true;
-                }
-            }
-
-            if (IsRight)
-            {
-                if (CheckMovement(Speed, 0))
-                    Location = new Point(Location.X + Speed, Location.Y);
-                else
-                {
-                    IsLeft = true;
-                    IsRight = false;
-
-                }
-            }
-
-            if (IsUp)
-            {
-                if (CheckMovement(0, 0 - Speed))
-                    Location = new Point(Location.X, Location.Y - Speed);
-                else
-                {
-                    IsUp = false;
-                    IsDown = true;
-                }
-            }
-
-            if (IsDown)
-            {
-                if (CheckMovement(0, Speed) && CheckPlatform())
-                    Location = new Point(Location.X, Location.Y + Speed);
-                else
-                {
-                    IsUp = true;
-                    IsDown = false;
-                }
-            }
-
-
-        }
-
-        private bool CheckMovement(int x , int y)
-        {
-            var container = this.Parent;
-            
-            if (Location.Y + y > container!.Height - Height ||
-               Location.Y + y < 0 ||
-               Location.X + x > container!.Width - Width ||
-               Location.X + x < 0)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        private bool CheckPlatform()
-        {
-            if (_platform != null && Bounds.IntersectsWith(_platform.Bounds))
-            {
-                return false;
-            }
-            return true;
         }
     }
 }

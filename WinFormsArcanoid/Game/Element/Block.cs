@@ -65,6 +65,11 @@ namespace WinFormsArcanoid.Game.Element
         public void Destruction()
         {
             this.Hide();
+
+            if (Parent != null)
+            {
+                Parent.Controls.Remove(this);
+            }
         }
 
         public IBlock Copy() => new Block(BackColor, Endurance, Location, Size); 

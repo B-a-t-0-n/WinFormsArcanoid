@@ -36,8 +36,6 @@ namespace WinFormsArcanoid.Game
                 SizeMode = PictureBoxSizeMode.Zoom
             };
 
-            Circle.AddElementGame(Platform, Map.Blocks!);
-
             _timerMovement = new Timer();
             _timerMovement.Enabled = false;
             _timerMovement.Interval = 10;
@@ -74,19 +72,19 @@ namespace WinFormsArcanoid.Game
         {
             MovementPlatform.Movement(Platform);
 
-            if (!Circle.IsUp && !Circle.IsDown && !Circle.IsLeft && !Circle.IsRight && MovementPlatform.IsLeft)
+            if (!MovementCircle.IsUp && !MovementCircle.IsDown && !MovementCircle.IsLeft && !MovementCircle.IsRight && MovementPlatform.IsLeft)
             {
-                Circle.IsLeft = true;
-                Circle.IsUp = true;
+                MovementCircle.IsLeft = true;
+                MovementCircle.IsUp = true;
             }
 
-            if (!Circle.IsUp && !Circle.IsDown && !Circle.IsLeft && !Circle.IsRight && MovementPlatform.IsRight)
+            if (!MovementCircle.IsUp && !MovementCircle.IsDown && !MovementCircle.IsLeft && !MovementCircle.IsRight && MovementPlatform.IsRight)
             {
-                Circle.IsRight = true;
-                Circle.IsUp = true;
+                MovementCircle.IsRight = true;
+                MovementCircle.IsUp = true;
             }
 
-            Circle.Movement();
+            MovementCircle.Movement(Circle, Platform, Map);
         }
     }
 }
